@@ -2,6 +2,7 @@
 use App\Http\Controllers\admin\RuanganControllers;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\GoogleController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -13,6 +14,8 @@ Route::post('/admin/ruangan', [RuanganControllers::class, 'store'])->name('admin
 Route::get('/admin/ruangan/{id}/edit', [RuanganControllers::class,'edit'])->name('admin.ruangan.edit');
 Route::put('/admin/ruangan/{id}', [RuanganControllers::class, 'update'])->name('admin.ruangan.update');
 Route::delete('/admin/ruangan/{id}', [RuanganControllers::class, 'destroy'])->name('admin.ruangan.destroy');
+Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.login');
+Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
