@@ -7,8 +7,13 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/admin/ruangan', [RuanganControllers::class,'index'])->name('admin.ruangan.index');
 Route::get('/admin/ruangan/create', [RuanganControllers::class, 'create'])->name('admin.ruangan.create');
 Route::post('/admin/ruangan', [RuanganControllers::class, 'store'])->name('admin.ruangan.store');
+Route::get('/admin/ruangan/{id}/edit', [RuanganControllers::class,'edit'])->name('admin.ruangan.edit');
+Route::put('/admin/ruangan/{id}', [RuanganControllers::class, 'update'])->name('admin.ruangan.update');
+Route::delete('/admin/ruangan/{id}', [RuanganControllers::class, 'destroy'])->name('admin.ruangan.destroy');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

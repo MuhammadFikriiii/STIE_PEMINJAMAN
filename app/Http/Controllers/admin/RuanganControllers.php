@@ -13,7 +13,8 @@ class RuanganControllers extends Controller
      */
     public function index()
     {
-        return view('admin.ruangan.index');
+        $ruangan = Ruangan::latest()->get();
+        return view('admin.ruangan.index', compact('ruangan'));
     }
 
     /**
@@ -47,9 +48,9 @@ class RuanganControllers extends Controller
 
         Ruangan::create($data);
 
-        dd($data);
+        // dd($data);
 
-        return redirect()->route('admin.ruangan.index')->with('success', 'Ruangan Berhasil Dibuat');
+        return redirect()->route('admin.ruangan.index')->with('tambah', 'Ruangan Berhasil Dibuat');
     }
 
 
@@ -64,24 +65,59 @@ class RuanganControllers extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $ruangan = Ruangan::findOrFail($id);
+
+        return view('admin.ruangan.edit', compact('ruangan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $ruangan = Ruangan::findOrFail($id);
+
+        $request->validate([
+            'kode_ruangan' => 'required|integer|unique:rooms,kode_ruangan,' . $id,
+            'nama_ruangan' => 'required|string',
+            'status_ruangan' => 'required|in:available,used,maintenance',
+            'foto_ruangan' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        if ($request->hasFile('foto_ruangan')) {
+            if ($ruangan->foto_ruangan && file_exists(public_path('storage/' . $ruangan->foto_ruangan))) {
+                unlink(public_path('storage/' . $ruangan->foto_ruangan));
+            }
+
+            $foto = $request->file('foto_ruangan')->store('ruangan', 'public');
+            $ruangan->foto_ruangan = $foto;
+        }
+
+        $ruangan->kode_ruangan = $request->kode_ruangan;
+        $ruangan->nama_ruangan = $request->nama_ruangan;
+        $ruangan->status_ruangan = $request->status_ruangan;
+        $ruangan->save();
+
+        return redirect()->route('admin.ruangan.index')->with('update', 'Data ruangan berhasil diperbarui');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $ruangan = Ruangan::findOrFail($id);
+
+        if ($ruangan->foto_ruangan && file_exists(public_path('storage/' . $ruangan->foto_ruangan))) {
+            unlink(public_path('storage/' . $ruangan->foto_ruangan));
+        }
+
+        $ruangan->delete();
+
+        return redirect()->route('admin.ruangan.index')->with('delete', 'Data ruangan berhasil dihapus');
     }
+
 }
