@@ -7,6 +7,17 @@
     <div class="bg-gray-900 min-h-screen p-6">
         <div class="text-center text-3xl text-white mt-5 mb-5">TAMBAH RUANGAN</div>
         <hr class="border-2 mb-4">
+
+        @if ($errors->any())
+            <div class="bg-red-500 text-white p-3 rounded mb-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li> {{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('admin.ruangan.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 

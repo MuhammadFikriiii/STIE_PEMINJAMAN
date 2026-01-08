@@ -58,14 +58,7 @@
                             <td class="p-2 border">{{ $loop->iteration }}</td>
                             <td class="p-2 border">{{ $item->name }}</td>
                             <td class="p-2 border">{{ $item->email }}</td>
-                            <td class="p-2 border">
-                                <span class="px-2 py-1 rounded text-sm
-                                                        @if($item->role == 'admin') bg-black
-                                                        @else bg-gray-600
-                                                        @endif">
-                                    {{ ucfirst($item->role) }}
-                                </span>
-                            </td>
+                            <td class="p-2 border">{{ $item->role }}</td>
                             <td class="p-2 border">
                                 <span class="px-2 py-1 rounded text-sm
                                                         @if($item->status == 'approve') bg-green-600
@@ -76,13 +69,13 @@
                             </td>
                             <td class="p-2 border">
                                 <div class="flex flex-wrap justify-center gap-2">
-                                    <a href=""
+                                    <a href="{{ route('admin.user.edit', $item->id) }}"
                                         class="bg-blue-500 px-3 py-1 rounded text-white text-xs sm:text-sm flex items-center justify-center">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                         <span class="hidden sm:inline ml-1">Edit</span>
                                     </a>
 
-                                    <form action="" method="POST" class="inline">
+                                    <form action="{{ route('admin.user.destroy', $item->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button onclick="return confirm('Hapus data?')"

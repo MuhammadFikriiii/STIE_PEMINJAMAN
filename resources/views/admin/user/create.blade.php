@@ -12,7 +12,7 @@
             <div class="bg-red-500 text-white p-3 rounded mb-4">
                 <ul>
                     @foreach ($errors->all() as $error)
-                        <li>- {{ $error }}</li>
+                        <li> {{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
@@ -51,6 +51,7 @@
                 placeholder="Masukkan password" required>
 
             <div class="flex justify-end gap-4">
+                <a href="{{ route('admin.user.index') }}" class="bg-blue-500 mt-6 px-4 py-2 rounded text-center text-white font-bold">KEMBALI</a>
             <button type="submit" class="item-center mt-6 text-white block !bg-green-600 hover:!bg-green-800 rounded px-4 py-2">SIMPAN</button>
             </div>
         </form>

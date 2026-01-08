@@ -12,7 +12,15 @@
     <div class="flex min-h-screen justify-center items-center ml-10 mr-10">
         <div class="w-96 p-6 bg-[#ac1234] rounded-md">
             <h2 class="text-center text-3xl font-bold text-white mb-6">SIGN IN</h2>
-
+                @if ($errors->any())
+                    <div class="bg-red-500 text-white p-3 rounded mb-4">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li> {{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             <form method="POST" action="{{ route('login') }}" class="space-y-4">
                 @csrf
                 <div>

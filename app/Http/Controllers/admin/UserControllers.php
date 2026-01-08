@@ -62,7 +62,9 @@ class UserControllers extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
@@ -70,7 +72,27 @@ class UserControllers extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'role' => 'required|in:admin,peminjam',
+            'status' => 'required|in:approve,pending',
+            'password' => 'nullable|min:8'
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'status' => $request->status,
+            'password' => $request->filled('password')
+                ? bcrypt($request->password)
+                : $user->password,
+        ]);
+
+        return redirect()->route('admin.user.index')->with('update', 'user berhasil diperbaharui');
     }
 
     /**
@@ -78,6 +100,10 @@ class UserControllers extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        return redirect()->route('admin.user.index')->with('delete', 'user berhasil dihapus');
     }
 }

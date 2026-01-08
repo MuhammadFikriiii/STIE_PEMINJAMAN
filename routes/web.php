@@ -19,6 +19,10 @@ Route::delete('/admin/ruangan/{id}', [RuanganControllers::class, 'destroy'])->na
 Route::get('/admin/user', [UserControllers::class,'index'])->name('admin.user.index');
 Route::get('/admin/user/create', [UserControllers::class, 'create'])->name('admin.user.create');
 Route::post('/admin/user', [UserControllers::class,'store'])->name('admin.user.store');
+Route::get('/admin/user/{id}/edit', [UserControllers::class, 'edit'])->name('admin.user.edit');
+Route::put('/admin/user/{id}', [UserControllers::class, 'update'])->name('admin.user.update');
+Route::delete('/admin/user/{id}', [UserControllers::class, 'destroy'])->name('admin.user.destroy');
+
 Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.login');
 Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
 

@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
+        [x-cloak] {
+            display: none !important;
+        }
+
         .sidebar-transition {
             transition: transform 0.3s ease-in-out;
         }
@@ -82,9 +86,11 @@
     </style>
 </head>
 
-<body class="dark:bg-gray-900 min-h-screen" x-data="{ 
-    sidebarOpen: window.innerWidth >= 640,
-    mobileSidebarOpen: false }">
+<body class="dark:bg-gray-900 min-h-screen" x-data="{
+        sidebarOpen: true,
+        mobileSidebarOpen: false,
+        initialized: false
+        }" x-cloak>
 
     <div x-show="mobileSidebarOpen && window.innerWidth < 640"
         x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0"
@@ -158,7 +164,7 @@
                         <div class="flex items-center">
                             <button type="button"
                                 @click="if(window.innerWidth < 640) { mobileSidebarOpen = true } else { sidebarOpen = !sidebarOpen }"
-                                class="inline-flex items-center p-2 text-sm text-gray-300 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600">
+                                class="inline-flex items-center p-2 text-sm text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600">
                                 <span class="sr-only">Open sidebar</span>
                                 <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                     height="24" fill="none" viewBox="0 0 24 24">
@@ -166,17 +172,14 @@
                                         d="M5 7h14M5 12h14M5 17h10" />
                                 </svg>
                             </button>
-
-                            <div class="flex-shrink-0 ml-3">
-                                <h1 class="text-xl font-bold text-white">Dashboard</h1>
-                            </div>
                         </div>
 
                         <div class="flex items-center space-x-4">
                             <div class="relative" x-data="{ open: false }">
                                 <button @click="open = !open"
-                                    class="flex items-center space-x-3 text-gray-300 hover:text-white focus:outline-none">
-                                    <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
+                                    class="flex items-center space-x-3 text-white hover:text-white focus:outline-none">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
                                         <span
                                             class="text-white font-semibold">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</span>
                                     </div>
@@ -184,18 +187,17 @@
                                     <i class="fas fa-chevron-down text-sm"></i>
                                 </button>
 
-                                <div x-show="open" @click.away="open = false"
+                                <div x-show="open" x-cloak @click.away="open = false"
                                     x-transition:enter="transition ease-out duration-100"
                                     x-transition:enter-start="transform opacity-0 scale-95"
                                     x-transition:enter-end="transform opacity-100 scale-100"
                                     x-transition:leave="transition ease-in duration-75"
-                                    x-transition:leave-start="transform opacity-100 scale-100"
                                     x-transition:leave-end="transform opacity-0 scale-95"
                                     class="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-700">
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <button type="submit"
-                                            class="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">
+                                            class="block w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 hover:text-white">
                                             <i class="fas fa-sign-out-alt mr-2"></i> Log Out
                                         </button>
                                     </form>
@@ -226,9 +228,17 @@
                 }
             });
 
-            function handleResize() {
+            function handleResize(initial = false) {
                 const isDesktop = window.innerWidth >= 640;
                 const alpineData = Alpine.$data(document.body);
+
+                if (initial && !alpineData.initialized) {
+                    // SET AWAL TANPA TRANSISI
+                    alpineData.sidebarOpen = isDesktop;
+                    alpineData.mobileSidebarOpen = false;
+                    alpineData.initialized = true;
+                    return;
+                }
 
                 if (isDesktop) {
                     alpineData.mobileSidebarOpen = false;
@@ -237,14 +247,13 @@
                     alpineData.sidebarOpen = false;
                 }
 
-                if (isDesktop || !alpineData.mobileSidebarOpen) {
-                    document.body.classList.remove('no-scroll');
-                } else {
-                    document.body.classList.add('no-scroll');
-                }
+                document.body.classList.toggle(
+                    'no-scroll',
+                    !isDesktop && alpineData.mobileSidebarOpen
+                );
             }
 
-            handleResize();
+            handleResize(true);
 
             window.addEventListener('resize', handleResize);
 
