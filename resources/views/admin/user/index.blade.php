@@ -4,8 +4,8 @@
     <div class="bg-gray-900 min-h-screen p-6">
 
         <div class="flex justify-between items-center mb-4">
-            <h1 class="text-white text-2xl font-bold">Data Ruangan</h1>
-            <a href="{{ route('admin.ruangan.create') }}"
+            <h1 class="text-white text-2xl font-bold">Data User</h1>
+            <a href="{{ route('admin.user.create') }}"
                 class="bg-green-600 hover:bg-green-800 text-white px-4 py-2 rounded font-bold">
                 TAMBAH
             </a>
@@ -45,47 +45,44 @@
                 <thead>
                     <tr class="bg-dark">
                         <th class="p-3 border">No</th>
-                        <th class="p-3 border">Kode Ruangan</th>
-                        <th class="p-3 border">Nama Ruangan</th>
+                        <th class="p-3 border">Nama</th>
+                        <th class="p-3 border">Email</th>
+                        <th class="p-3 border">Role</th>
                         <th class="p-3 border">Status</th>
-                        <th class="p-3 border">Foto</th>
                         <th class="p-3 border">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($ruangan as $item)
+                    @forelse ($user as $item)
                         <tr class="text-center bg-gray-800 hover:bg-gray-700">
                             <td class="p-2 border">{{ $loop->iteration }}</td>
-                            <td class="p-2 border">{{ $item->kode_ruangan }}</td>
-                            <td class="p-2 border">{{ $item->nama_ruangan }}</td>
+                            <td class="p-2 border">{{ $item->name }}</td>
+                            <td class="p-2 border">{{ $item->email }}</td>
                             <td class="p-2 border">
                                 <span class="px-2 py-1 rounded text-sm
-                                                        @if($item->status_ruangan == 'available') bg-green-600
-                                                        @elseif($item->status_ruangan == 'used') bg-yellow-600
-                                                        @else bg-red-600
+                                                        @if($item->role == 'admin') bg-black
+                                                        @else bg-gray-600
                                                         @endif">
-                                    {{ ucfirst($item->status_ruangan) }}
+                                    {{ ucfirst($item->role) }}
                                 </span>
                             </td>
                             <td class="p-2 border">
-                                @if($item->foto_ruangan)
-                                    <a href="{{ asset('storage/' . $item->foto_ruangan) }}" target="_blank">
-                                        <img src="{{ asset('storage/' . $item->foto_ruangan) }}"
-                                            class="w-24 h-12 object-cover mx-auto rounded cursor-pointer hover:opacity-80">
-                                    </a>
-                                @else
-                                    <span class="text-gray-400">Tidak ada</span>
-                                @endif
+                                <span class="px-2 py-1 rounded text-sm
+                                                        @if($item->status == 'approve') bg-green-600
+                                                        @else bg-yellow-600
+                                                        @endif">
+                                    {{ ucfirst($item->status) }}
+                                </span>
                             </td>
                             <td class="p-2 border">
                                 <div class="flex flex-wrap justify-center gap-2">
-                                    <a href="{{ route('admin.ruangan.edit', $item->id) }}"
+                                    <a href=""
                                         class="bg-blue-500 px-3 py-1 rounded text-white text-xs sm:text-sm flex items-center justify-center">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                         <span class="hidden sm:inline ml-1">Edit</span>
                                     </a>
 
-                                    <form action="{{ route('admin.ruangan.destroy', $item->id) }}" method="POST" class="inline">
+                                    <form action="" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button onclick="return confirm('Hapus data?')"

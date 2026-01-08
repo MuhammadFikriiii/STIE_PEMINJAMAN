@@ -27,13 +27,12 @@
                         class="mt-2 block w-full rounded-md bg-white px-3 py-2 text-black placeholder-gray-400 focus:outline-indigo-500" />
                 </div>
 
-                <button type="submit" class="w-full mt-4 bg-black text-white font-semibold py-2 rounded-md">Sign
-                    in</button>
+                <button type="submit" class="w-full mt-4 bg-black text-white font-semibold py-2 rounded-md">Sign in</button>
 
-                    <p>or</p>
+                <p class="text-white text-center">or</p>
 
                 <a href="{{ route('google.login') }}"
-                    class="flex items-center justify-center gap-2 w-full border rounded-lg py-2 mt-4 bg-white hover:bg-gray-100">
+                    class="flex items-center justify-center gap-2 w-full rounded-lg py-2 mt-4 bg-white hover:bg-gray-100">
                     <img src="https://developers.google.com/identity/images/g-logo.png" class="w-5 h-5">
                     <span>Login dengan Google</span>
                 </a>
