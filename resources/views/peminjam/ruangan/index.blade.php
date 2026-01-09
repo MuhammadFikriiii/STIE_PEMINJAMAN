@@ -68,7 +68,7 @@
                                     </a>
                                 @elseif($item->status_ruangan == 'used')
                                     <button
-                                        class="w-full !bg-gray-700 text-white text-center font-semibold py-3 px-4 rounded-lg cursor-not-allowed flex items-center justify-center gap-2">
+                                        class="w-full !bg-yellow-600 text-white text-center font-semibold py-3 px-4 rounded-lg cursor-not-allowed flex items-center justify-center gap-2">
                                         <i class="fas fa-ban"></i>
                                         <span>Sedang Digunakan</span>
                                     </button>

@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="mt-4 pt-4 border-t border-gray-700">
-                    <a href="#" class="text-blue-400 hover:text-blue-300 text-sm flex items-center">
+                    <a href="/admin/ruangan" class="text-blue-400 hover:text-blue-300 text-sm flex items-center">
                         Lihat detail
                         <i class="fas fa-arrow-right ml-2"></i>
                     </a>
