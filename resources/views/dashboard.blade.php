@@ -16,7 +16,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-gray-400 text-sm">Total Peminjaman Ruangan</p>
-                        <h3 class="text-3xl font-bold mt-2">1,248</h3>
+                        <h3 class="text-3xl font-bold mt-2"> {{ $totalRuangan }}</h3>
                         <p class="text-green-400 text-sm mt-2">
                             <i class="fas fa-arrow-up mr-1"></i>
                             12% dari bulan lalu

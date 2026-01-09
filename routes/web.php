@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\UserControllers;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Auth\DashboardControllers;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -26,9 +27,10 @@ Route::delete('/admin/user/{id}', [UserControllers::class, 'destroy'])->name('ad
 Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.login');
 Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
 
-Route::get('/admin/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/admin/dashboard', [DashboardControllers::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
