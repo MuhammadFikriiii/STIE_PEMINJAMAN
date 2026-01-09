@@ -1,10 +1,11 @@
 <?php
 use App\Http\Controllers\admin\RuanganControllers;
+use App\Http\Controllers\peminjam\RuanganControllers as  PeminjamRuanganControllers;
 use App\Http\Controllers\Admin\UserControllers;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleController;
-use App\Http\Controllers\Auth\DashboardControllers;
+use App\Http\Controllers\admin\DashboardControllers;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -27,10 +28,9 @@ Route::delete('/admin/user/{id}', [UserControllers::class, 'destroy'])->name('ad
 Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.login');
 Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
 
-Route::get('/admin/dashboard', [DashboardControllers::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::get('/admin/dashboard', [DashboardControllers::class, 'index'])->name('dashboard');
 
+Route::get('/peminjam/ruangan', [PeminjamRuanganControllers::class, 'index'])->name('peminjam.ruangan.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

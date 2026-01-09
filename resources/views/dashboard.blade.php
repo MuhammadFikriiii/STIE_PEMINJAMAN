@@ -15,12 +15,8 @@
             <div class="bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-gray-400 text-sm">Total Peminjaman Ruangan</p>
+                        <p class="text-gray-400 text-sm">Total Ruangan</p>
                         <h3 class="text-3xl font-bold mt-2"> {{ $totalRuangan }}</h3>
-                        <p class="text-green-400 text-sm mt-2">
-                            <i class="fas fa-arrow-up mr-1"></i>
-                            12% dari bulan lalu
-                        </p>
                     </div>
                     <div class="w-14 h-14 rounded-full bg-blue-500/20 flex items-center justify-center">
                         <i class="fas fa-building text-blue-400 text-2xl"></i>
@@ -38,12 +34,8 @@
             <div class="bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-gray-400 text-sm">Total Peminjaman Barang</p>
+                        <p class="text-gray-400 text-sm">Total Peminjaman</p>
                         <h3 class="text-3xl font-bold mt-2">892</h3>
-                        <p class="text-green-400 text-sm mt-2">
-                            <i class="fas fa-arrow-up mr-1"></i>
-                            8% dari bulan lalu
-                        </p>
                     </div>
                     <div class="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center">
                         <i class="fas fa-boxes text-purple-400 text-2xl"></i>
@@ -62,18 +54,14 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-gray-400 text-sm">Total Users</p>
-                        <h3 class="text-3xl font-bold mt-2">156</h3>
-                        <p class="text-green-400 text-sm mt-2">
-                            <i class="fas fa-arrow-up mr-1"></i>
-                            5% dari bulan lalu
-                        </p>
+                        <h3 class="text-3xl font-bold mt-2 text-center">{{ $totalUser }}</h3>
                     </div>
                     <div class="w-14 h-14 rounded-full bg-green-500/20 flex items-center justify-center">
                         <i class="fas fa-users text-green-400 text-2xl"></i>
                     </div>
                 </div>
                 <div class="mt-4 pt-4 border-t border-gray-700">
-                    <a href="#" class="text-blue-400 hover:text-blue-300 text-sm flex items-center">
+                    <a href="/admin/user" class="text-blue-400 hover:text-blue-300 text-sm flex items-center">
                         Lihat detail
                         <i class="fas fa-arrow-right ml-2"></i>
                     </a>

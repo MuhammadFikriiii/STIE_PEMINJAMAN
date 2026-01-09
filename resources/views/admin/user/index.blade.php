@@ -10,7 +10,7 @@
                 TAMBAH
             </a>
         </div>
-        
+
         @if (session('tambah'))
             <div id="alert" class="bg-green-500 text-white px-4 py-2 rounded-md mb-4 text-center relative">
                 <span class="font-bold">{{ session('tambah') }}</span>
@@ -64,9 +64,9 @@
                             <td class="p-2 border">{{ $item->role }}</td>
                             <td class="p-2 border">
                                 <span class="px-2 py-1 rounded text-sm
-                                            @if($item->status == 'approve') bg-green-600
-                                            @else bg-yellow-600
-                                            @endif">
+                                                    @if($item->status == 'approve') bg-green-600
+                                                    @else bg-yellow-600
+                                                    @endif">
                                     {{ ucfirst($item->status) }}
                                 </span>
                             </td>
@@ -101,9 +101,8 @@
                 </tbody>
             </table>
         </div>
-        
-    </div>
-    <div class="mt-4 flex justify-center">
+        <div class="mt-4 flex justify-center">
             {{ $user->onEachSide(1)->links() }}
         </div>
+    </div>
 @endsection

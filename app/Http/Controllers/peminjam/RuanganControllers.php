@@ -1,24 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\peminjam;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ruangan;
-use App\Models\User;
 
-class DashboardControllers extends Controller
+class RuanganControllers extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $totalRuangan = Ruangan::count();
+        $ruangan = Ruangan::all();
 
-        $totalUser = User::count();
-
-        return view('dashboard', compact('totalRuangan', 'totalUser'));
+        return view('peminjam.ruangan.index', compact('ruangan'));
     }
 
     /**
