@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.peminjam.app')
 
 @section('content')
     <div class="bg-gray-900 min-h-screen p-4 md:p-6">
@@ -61,7 +61,7 @@
 
                             <div class="mt-6 text-white">
                                 @if($item->status_ruangan == 'available')
-                                    <a href=""
+                                    <a href="{{ route('peminjam.borrow.create', $item->id) }}"
                                         class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-semibold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center gap-2">
                                         <i class="fas fa-calendar-plus"></i>
                                         <span>Pinjam Ruangan</span>

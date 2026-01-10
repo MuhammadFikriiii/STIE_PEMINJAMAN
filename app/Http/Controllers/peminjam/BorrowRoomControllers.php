@@ -14,7 +14,9 @@ class BorrowRoomControllers extends Controller
      */
     public function index()
     {
-        //
+        $borrowRoom = BorrowRoom::with(['user', 'room'])->get();
+
+        return view('peminjam.peminjaman.index', compact('borrowRoom'));
     }
 
     /**
@@ -24,7 +26,7 @@ class BorrowRoomControllers extends Controller
     {
         $ruangan = Ruangan::findOrFail($ruangan);
 
-        return view('peminjam.borrow.create', compact('ruangan'));
+        return view('peminjam.ruangan.pinjamruangan', compact('ruangan'));
     }
 
     /**
@@ -33,10 +35,11 @@ class BorrowRoomControllers extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'ruangan_id' => 'required|exists:ruangans,id',
-            'tanggal' => 'required|date',
-            'jam_mulai' => 'required',
-            'jam_selesai' => 'required',
+            'room_id' => 'required|exists:rooms,id',
+            'tgl_pinjam' => 'required|date',
+            'waktu_mulai' => 'required',
+            'waktu_selesai' => 'required|after:waktu_mulai',
+            'no_hp' => 'required',
         ]);
 
         BorrowRoom::create([
@@ -46,10 +49,10 @@ class BorrowRoomControllers extends Controller
             'tgl_pinjam' => $request->tgl_pinjam,
             'waktu_mulai' => $request->waktu_mulai,
             'waktu_selesai' => $request->waktu_selesai,
-            'status' => 'diproses'
+            'status' => 'diajukan',
         ]);
 
-        return redirect()->route('peminjam.ruangan.index')->with('success', 'Peminjaman ruangan berhasil diajukan');
+        return redirect()->route('peminjam.peminjaman.index')->with('tambah', 'Peminjaman ruangan berhasil diajukan');
     }
 
     /**
