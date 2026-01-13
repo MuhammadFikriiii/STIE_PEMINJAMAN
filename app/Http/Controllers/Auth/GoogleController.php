@@ -40,6 +40,7 @@ class GoogleController extends Controller
                     'email' => $googleUser->email,
                     'google_id' => $googleUser->id,
                     'avatar' => $googleUser->avatar,
+                    'role' => 'peminjam',
                     'password' => bcrypt(Str::random(16)),
                 ]);
             }
@@ -47,6 +48,6 @@ class GoogleController extends Controller
 
         Auth::login($user);
 
-        return redirect('/admin/dashboard');
+        return redirect('/peminjam/ruangan');
     }
 }
