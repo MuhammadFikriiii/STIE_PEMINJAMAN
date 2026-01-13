@@ -146,6 +146,14 @@
                             <span class="flex-1 ms-3 whitespace-nowrap text-white">User</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="/admin/daftar-permohonan-peminjaman"
+                            class="flex items-center px-2 py-3 text-body rounded-base hover:bg-gray-700 hover:text-fg-brand group transition-colors duration-150"
+                            @click="if(window.innerWidth < 640) mobileSidebarOpen = false">
+                            <i class="fas fa-user text-white"></i>
+                            <span class="flex-1 ms-3 whitespace-nowrap text-white">Daftar Pengajuan</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </aside>
@@ -208,7 +216,7 @@
                 </div>
             </nav>
 
-            <main class="flex-1 p-4 sm:p-6 overflow-auto bg-gray-50 dark:bg-gray-900 mt-16">
+            <main class="flex-1 p-4 sm:p-6 overflow-auto bg-[#ac1234] mt-16">
                 <div class="max-w-7xl mx-auto">
                     @yield('content')
                 </div>
