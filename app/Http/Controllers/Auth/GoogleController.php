@@ -10,13 +10,11 @@ use Illuminate\Support\Str;
 
 class GoogleController extends Controller
 {
-    // redirect ke google
     public function redirect()
     {
         return Socialite::driver('google')->redirect();
     }
 
-    // callback dari google
     public function callback()
     {
         $googleUser = Socialite::driver('google')->stateless()->user();
@@ -24,29 +22,38 @@ class GoogleController extends Controller
         $user = User::where('google_id', $googleUser->id)->first();
 
         if (!$user) {
-            // cek email sudah terdaftar?
+
             $user = User::where('email', $googleUser->email)->first();
 
             if ($user) {
-                // update google_id
                 $user->update([
                     'google_id' => $googleUser->id,
                     'avatar' => $googleUser->avatar,
                 ]);
             } else {
-                // buat user baru
                 $user = User::create([
                     'name' => $googleUser->name,
                     'email' => $googleUser->email,
                     'google_id' => $googleUser->id,
                     'avatar' => $googleUser->avatar,
                     'role' => 'peminjam',
+                    'status' => 'pending',
                     'password' => bcrypt(Str::random(16)),
                 ]);
             }
         }
 
+        if ($user->status !== 'approve') {
+            return redirect('/login')->withErrors([
+                'email' => 'Akun Anda masih menunggu persetujuan Admin.'
+            ]);
+        }
+
         Auth::login($user);
+
+        if ($user->role === 'admin') {
+            return redirect('/admin/dashboard');
+        }
 
         return redirect('/peminjam/ruangan');
     }

@@ -36,14 +36,23 @@
                         autocomplete="new-password"
                         class="mt-2 block w-full rounded-md bg-white px-3 py-2 text-black placeholder-gray-400 focus:outline-indigo-500" />
                 </div>
-                <div class="mt-3 text-center">
+
+                <div class="flex items-center justify-end mt-1">
+                    <button type="submit" class="w-full mt-3 bg-black text-white font-semibold py-2 rounded-md">Sign
+                        up</button>
+                </div>
+
+                <p class="text-white text-center mt-1">or</p>
+
+                <a href="{{ route('google.login') }}"
+                    class="flex items-center justify-center gap-2 w-full rounded-lg py-2 mt-4 bg-white hover:bg-gray-100">
+                    <img src="https://developers.google.com/identity/images/g-logo.png" class="w-5 h-5">
+                    <span>Sign up dengan Google</span>
+                </a>
+                <div class="mt-2 text-center">
                     <a class=" text-center underline text-sm text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                         href="{{ route('login') }}">Already registered?
                     </a>
-                </div>
-                <div class="flex items-center justify-end">
-                    <button type="submit" class="w-full mt-3 bg-black text-white font-semibold py-2 rounded-md">Sign
-                        up</button>
                 </div>
             </form>
         </div>

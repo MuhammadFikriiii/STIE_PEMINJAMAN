@@ -86,7 +86,7 @@
     </style>
 </head>
 
-<body class="dark:bg-gray-900 min-h-screen" x-data="{
+<body class="dark:bg-[#ac1234] min-h-screen" x-data="{
         sidebarOpen: true,
         mobileSidebarOpen: false,
         initialized: false
@@ -100,19 +100,19 @@
     </div>
 
     <div class="flex min-h-screen w-full">
-        <aside id="default-sidebar" class="w-64 bg-gray-800 border-e border-default sidebar-transition" :class="{
+        <aside id="default-sidebar" class="w-64 bg-[#ac1234] border-e border-default sidebar-transition" :class="{
                    'sidebar-mobile': window.innerWidth < 640,
                    'sidebar-mobile-expanded': mobileSidebarOpen && window.innerWidth < 640,
                    'sidebar-desktop': window.innerWidth >= 640,
                    'hidden': !sidebarOpen && window.innerWidth >= 640
                }" aria-label="Sidebar">
             <div class="h-full px-3 py-4 overflow-y-auto">
-                <div class="flex items-center justify-between mb-5 px-2">
-                    <h2 class="text-xl font-bold text-heading text-white">SIPERU</h2>
-
+                <div class="flex items-center mb-5 px-2">
+                    <img src="{{ asset('image/icon2.png') }}" alt="Icon" class="h-8 w-16 text-white">
+                    <h2 class="text-2xl text-white font-bold font-awesome mt-1 ml-2">SIPERU</h2>
                     <button type="button"
                         @click="if(window.innerWidth < 640) { mobileSidebarOpen = false } else { sidebarOpen = false }"
-                        class="sm:hidden text-gray-500 hover:text-gray-700">
+                        class="sm:hidden text-gray-500 hover:text-gray-700 ml-10">
                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                             height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -123,16 +123,8 @@
 
                 <ul class="space-y-2 font-medium">
                     <li>
-                        <a href=""
-                            class="flex items-center px-2 py-3 text-body rounded-base hover:bg-gray-700 hover:text-fg-brand group transition-colors duration-150"
-                            @click="if(window.innerWidth < 640) mobileSidebarOpen = false">
-                            <i class="fas fa-tachometer-alt text-white"></i>
-                            <span class="ms-3 text-white">Dashboard</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="/peminjam/ruangan"
-                            class="flex items-center px-2 py-3 text-body rounded-base hover:bg-gray-700 hover:text-fg-brand group transition-colors duration-150"
+                            class="flex items-center px-2 py-3 text-body rounded-base hover:bg-red-900 hover:text-fg-brand group transition-colors duration-150"
                             @click="if(window.innerWidth < 640) mobileSidebarOpen = false">
                             <i class="fas fa-door-open text-white"></i>
                             <span class="flex-1 ms-3 whitespace-nowrap text-white">Ruangan</span>
@@ -140,7 +132,7 @@
                     </li>
                     <li>
                         <a href="/peminjam/peminjaman"
-                            class="flex items-center px-2 py-3 text-body rounded-base hover:bg-gray-700 hover:text-fg-brand group transition-colors duration-150"
+                            class="flex items-center px-2 py-3 text-body rounded-base hover:bg-red-900 hover:text-fg-brand group transition-colors duration-150"
                             @click="if(window.innerWidth < 640) mobileSidebarOpen = false">
                             <i class="fas fa-user text-white"></i>
                             <span class="flex-1 ms-3 whitespace-nowrap text-white">Peminjaman</span>
@@ -154,7 +146,7 @@
             'main-content-expanded': sidebarOpen && window.innerWidth >= 640,
             'main-content-collapsed': !sidebarOpen && window.innerWidth >= 640
         }">
-            <nav class="bg-gray-800 border-b border-gray-700 fixed top-0 left-0 right-0 z-30 transition-all duration-300 ease-in-out"
+            <nav class="bg-[#ac1234] border-b border-white fixed top-0 left-0 right-0 z-30 transition-all duration-300 ease-in-out"
                 :class="{
                 'ml-64': sidebarOpen && window.innerWidth >= 640,
                 'ml-0': !sidebarOpen && window.innerWidth >= 640
@@ -164,7 +156,7 @@
                         <div class="flex items-center">
                             <button type="button"
                                 @click="if(window.innerWidth < 640) { mobileSidebarOpen = true } else { sidebarOpen = !sidebarOpen }"
-                                class="inline-flex items-center p-2 text-sm text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600">
+                                class="inline-flex items-center p-2 text-sm border border-white text-white rounded-lg hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-gray-600">
                                 <span class="sr-only">Open sidebar</span>
                                 <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                     height="24" fill="none" viewBox="0 0 24 24">
@@ -193,7 +185,7 @@
                                     x-transition:enter-end="transform opacity-100 scale-100"
                                     x-transition:leave="transition ease-in duration-75"
                                     x-transition:leave-end="transform opacity-0 scale-95"
-                                    class="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-700">
+                                    class="absolute right-0 mt-2 w-48 bg-[#ac1234] rounded-md shadow-lg py-1 z-50 border border-gray-700">
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <button type="submit"
@@ -208,7 +200,7 @@
                 </div>
             </nav>
 
-            <main class="flex-1 p-4 sm:p-6 overflow-auto bg-gray-50 dark:bg-gray-900 mt-16">
+            <main class="flex-1 p-4 sm:p-6 overflow-auto bg-gray-50 dark:bg-gray-200 mt-16">
                 <div class="max-w-7xl mx-auto">
                     @yield('content')
                 </div>

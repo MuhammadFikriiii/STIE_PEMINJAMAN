@@ -24,6 +24,14 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        $user = \App\Models\User::where('email', $request->email)->first();
+
+        if ($user && $user->status !== 'approve') {
+            return back()->withErrors([
+                'email' => 'Akun Anda masih menunggu persetujuan Admin.'
+            ]);
+        }
+
         $request->authenticate();
         $request->session()->regenerate();
 

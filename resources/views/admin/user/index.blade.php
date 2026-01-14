@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-gray-900 min-h-screen p-6">
+    <div class="bg-gray-200 min-h-screen p-6">
 
         <div class="flex justify-between items-center mb-4">
-            <h1 class="text-white text-2xl font-bold">Data User</h1>
+            <h1 class="text-black text-2xl font-bold">Data User</h1>
             <a href="{{ route('admin.user.create') }}"
                 class="bg-green-600 hover:bg-green-800 text-white px-4 py-2 rounded font-bold">
                 TAMBAH
@@ -44,25 +44,25 @@
         <div class="rounded-lg border shadow-md overflow-x-auto">
             <table class="w-full border text-white">
                 <thead>
-                    <tr class="bg-dark">
-                        <th class="p-3 border">No</th>
-                        <th class="p-3 border">Nama</th>
-                        <th class="p-3 border">Email</th>
-                        <th class="p-3 border">Role</th>
-                        <th class="p-3 border">Status</th>
-                        <th class="p-3 border">Aksi</th>
+                    <tr class="bg-[#ac1234]">
+                        <th class="p-3 border border-red-900">No</th>
+                        <th class="p-3 border border-red-900">Nama</th>
+                        <th class="p-3 border border-red-900">Email</th>
+                        <th class="p-3 border border-red-900">Role</th>
+                        <th class="p-3 border border-red-900">Status</th>
+                        <th class="p-3 border border-red-900">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($user as $item)
-                        <tr class="text-center bg-gray-800 hover:bg-gray-700">
-                            <td class="p-2 border">
+                        <tr class="text-center bg-white hover:bg-gray-100 text-black">
+                            <td class="p-2 border border-red-900">
                                 {{ $user->firstItem() + $loop->index }}
                             </td>
-                            <td class="p-2 border">{{ $item->name }}</td>
-                            <td class="p-2 border">{{ $item->email }}</td>
-                            <td class="p-2 border">{{ $item->role }}</td>
-                            <td class="p-2 border">
+                            <td class="p-2 border border-red-900">{{ $item->name }}</td>
+                            <td class="p-2 border border-red-900">{{ $item->email }}</td>
+                            <td class="p-2 border border-red-900">{{ $item->role }}</td>
+                            <td class="p-2 border border-red-900">
                                 <span class="px-2 py-1 rounded text-sm
                                                     @if($item->status == 'approve') bg-green-600
                                                     @else bg-yellow-600
@@ -70,7 +70,7 @@
                                     {{ ucfirst($item->status) }}
                                 </span>
                             </td>
-                            <td class="p-2 border">
+                            <td class="p-2 border border-red-900">
                                 <div class="flex flex-wrap justify-center gap-2">
                                     <a href="{{ route('admin.user.edit', $item->id) }}"
                                         class="bg-blue-500 px-3 py-1 rounded text-white text-xs sm:text-sm flex items-center justify-center">

@@ -1,4 +1,4 @@
-@extends('layouts.peminjam.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="bg-gray-200 min-h-screen p-6">
@@ -36,7 +36,7 @@
                         <td class="p-3 border border-red-900">{{ $item->room->nama_ruangan ?? '-' }}</td>
                         <td class="p-3 border border-red-900">{{ $item->no_hp }}</td>
                         <td class="p-3 border border-red-900">{{ $item->tgl_pinjam }}</td>
-                        <td class="p-3 border border-red-900">{{ $item->waktu_mulai }} - {{ $item->waktu_selesai }}</td>
+                        <td class="p-3 border border-red-900">{{ substr($item->waktu_mulai, 0, 5) }} - {{ substr($item->waktu_selesai, 0, 5) }}</td>
                         <td class="p-3 border border-red-900">
                             <span class="px-2 py-1 rounded text-sm bg-yellow-600">
                                 {{ $item->status }}

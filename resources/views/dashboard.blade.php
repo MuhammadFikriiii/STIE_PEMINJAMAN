@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen bg-[#ac1234]">
+<div class="min-h-screen bg-gray-200">
     <div class="container mx-auto px-4 py-8 mt-[-30px]">
 
         <div class="mb-8">
-            <h1 class="text-3xl font-bold text-white">Dashboard Overview</h1>
-            <p class="text-white">Welcome back, {{ Auth::user()->name }}!</p>
+            <h1 class="text-3xl font-bold text-black">Dashboard Admin</h1>
+            <p class="text-black">Welcome back, {{ Auth::user()->name }}!</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            <div class="bg-white rounded-xl p-6 border border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-white rounded-xl p-6 border border-red-600 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-black text-sm">Total Ruangan</p>
@@ -28,11 +28,11 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl p-6 border border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-white rounded-xl p-6 border border-red-600 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-black text-sm">Total Peminjaman</p>
-                        <h3 class="text-3xl font-bold mt-2 text-center">892</h3>
+                        <h3 class="text-3xl font-bold mt-2 text-center">0</h3>
                     </div>
                     <div class="w-14 h-14 rounded-full bg-[#ac1234] flex items-center justify-center">
                         <i class="fas fa-boxes text-white text-2xl"></i>
@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl p-6 border border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-white rounded-xl p-6 border border-red-600 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-black text-sm">Total Users</p>

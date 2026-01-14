@@ -1,9 +1,9 @@
 @extends('layouts.peminjam.app')
 
 @section('content')
-    <div class="bg-gray-900 min-h-screen p-4 md:p-6">
+    <div class="bg-gray-200 min-h-screen p-4 md:p-6">
         <div class="max-w-7xl mx-auto">
-            <h1 class="text-white text-2xl md:text-3xl font-bold mb-6">Daftar Ruangan</h1>
+            <h1 class="text-black text-2xl md:text-3xl font-bold mb-6">Daftar Ruangan</h1>
 
             @if(session('success'))
                 <div id="alert" class="bg-green-600 text-white px-4 py-3 rounded-lg mb-6 relative">
@@ -28,13 +28,13 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @forelse ($ruangan as $item)
                     <div
-                        class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-gray-600 transition-all duration-300">
-                        <div class="h-48 overflow-hidden">
+                        class="bg-white rounded-xl overflow-hidden text-black border border-gray-700 hover:border-gray-600 transition-all duration-300">
+                        <div class="h-48 overflow-hidden text-black">
                             @if($item->foto_ruangan)
                                 <img src="{{ asset('storage/' . $item->foto_ruangan) }}" alt="{{ $item->nama_ruangan }}"
-                                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-300 text-black">
                             @else
-                                <div class="w-full h-full bg-gray-700 flex items-center justify-center">
+                                <div class="w-full h-full bg-gray-700 flex items-center justify-center text-black">
                                     <i class="fas fa-image text-gray-500 text-4xl"></i>
                                 </div>
                             @endif
@@ -55,8 +55,8 @@
 
                         <div class="p-5">
                             <div class="mb-4">
-                                <h3 class="text-xl font-bold text-white mb-1">{{ $item->nama_ruangan }}</h3>
-                                <p class="text-gray-400 text-sm">Kode Ruangan: {{ $item->kode_ruangan }}</p>
+                                <h3 class="text-xl font-bold text-black mb-1">{{ $item->nama_ruangan }}</h3>
+                                <p class="text-black text-sm">Kode Ruangan: {{ $item->kode_ruangan }}</p>
                             </div>
 
                             <div class="mt-6 text-white">
@@ -81,8 +81,8 @@
                                 @endif
                             </div>
 
-                            <div class="mt-4 pt-4 border-t border-gray-700">
-                                <p class="text-gray-400 text-sm">
+                            <div class="mt-4 pt-4 border-t border-black">
+                                <p class="text-black text-sm">
                                     @if($item->status_ruangan == 'available')
                                         <i class="fas fa-check-circle text-green-500 mr-2"></i>
                                         Ruangan tersedia

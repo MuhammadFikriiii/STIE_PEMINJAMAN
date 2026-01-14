@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\admin\DashboardControllers;
 use App\Http\Controllers\peminjam\BorrowRoomControllers;
+use App\Http\Controllers\admin\BorrowRoomControllers as BorrowRoom;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -29,6 +30,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::delete('/user/{id}', [UserControllers::class, 'destroy'])->name('admin.user.destroy');
 
     Route::get('/dashboard', [DashboardControllers::class, 'index'])->name('dashboard');
+
+    Route::get('/daftar-permohonan-peminjaman', [BorrowRoom::class, 'index'])->name('admin.pengajuan.index');
 });
 
 Route::prefix('peminjam')->middleware(['auth', 'peminjam'])->group(function () {
