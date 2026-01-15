@@ -26,6 +26,7 @@
                     <th class="p-3 border border-red-900">Tanggal</th>
                     <th class="p-3 border border-red-900">Waktu</th>
                     <th class="p-3 border border-red-900">Status</th>
+                    <th class="p-3 border border-red-900">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +39,7 @@
                         <td class="p-3 border border-red-900">{{ $item->tgl_pinjam }}</td>
                         <td class="p-3 border border-red-900">{{ substr($item->waktu_mulai, 0, 5) }} - {{ substr($item->waktu_selesai, 0, 5) }}</td>
                         <td class="p-3 border border-red-900">
-                            <span class="px-2 py-1 rounded text-sm bg-yellow-600">
+                            <span class="px-2 py-1 rounded text-sm bg-yellow-600 text-white">
                                 {{ $item->status }}
                             </span>
                         </td>

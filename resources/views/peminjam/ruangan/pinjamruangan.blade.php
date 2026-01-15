@@ -3,14 +3,14 @@
 @section('title', 'Pinjam Ruangan')
 
 @section('content')
-<div class="bg-gray-900 min-h-screen p-6">
-    <div class="text-center text-3xl text-white mt-5 mb-5">
+<div class="bg-gray-200 min-h-screen p-6">
+    <div class="text-center text-3xl text-black mb-3">
         PINJAM RUANGAN
     </div>
     <hr class="border-2 mb-6">
 
     @if ($errors->any())
-        <div class="bg-red-600 text-white p-4 rounded mb-4">
+        <div class="bg-red-600 text-black p-4 rounded mb-4">
             <ul class="list-disc list-inside">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -23,35 +23,35 @@
         @csrf
 
         <div class="mb-4">
-        <label class="text-white">Nama Peminjam</label>
-        <input type="text" class="w-full rounded p-2 bg-gray-300 text-black" value="{{ auth()->user()->name }}" readonly>
+        <label class="text-black">Nama Peminjam</label>
+        <input type="text" class="w-full rounded p-2 bg-white text-black border border-black" value="{{ auth()->user()->name }}" readonly>
         </div>
 
         <input type="hidden" name="room_id" value="{{ $ruangan->id }}">
 
         <div class="mb-4">
-        <label class="text-white">Ruangan</label>
-            <input type="text" class="w-full rounded p-2 bg-gray-300 text-black" value="{{ $ruangan->nama_ruangan }}" readonly>
+        <label class="text-black">Ruangan</label>
+            <input type="text" class="w-full rounded p-2 bg-white text-black border border-black" value="{{ $ruangan->nama_ruangan }}" readonly>
         </div>
 
         <div class="mb-4">
-        <label class="text-white">Tanggal Pinjam</label>
-        <input type="date" name="tgl_pinjam" class="w-full rounded p-2" required>
+        <label class="text-black">Tanggal Pinjam</label>
+        <input type="date" name="tgl_pinjam" class="w-full rounded p-2 border border-black" required>
         </div>
 
         <div class="mb-4">
-        <label class="text-white">Waktu Mulai</label>
-        <input type="time" name="waktu_mulai" class="w-full rounded p-2" required>
+        <label class="text-black">Waktu Mulai</label>
+        <input type="time" name="waktu_mulai" class="w-full rounded p-2 border border-black" required>
         </div>
 
         <div class="mb-4">
-        <label class="text-white">Waktu Selesai</label>
-        <input type="time" name="waktu_selesai" class="w-full rounded p-2" required>
+        <label class="text-black">Waktu Selesai</label>
+        <input type="time" name="waktu_selesai" class="w-full rounded p-2 border border-black" required>
         </div>
 
         <div class="mb-6">
-        <label class="text-white">No HP / WhatsApp</label>
-        <input type="text" name="no_hp" class="w-full rounded p-2" placeholder="08xxxxxxxxxx" required>
+        <label class="text-black">No HP / WhatsApp</label>
+        <input type="text" name="no_hp" class="w-full rounded p-2 border border-black" placeholder="08xxxxxxxxxx" required>
         </div>
 
         <div class="flex justify-end gap-4">

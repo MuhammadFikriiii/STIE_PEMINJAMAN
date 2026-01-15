@@ -63,7 +63,7 @@
                             <td class="p-2 border border-red-900">{{ $item->email }}</td>
                             <td class="p-2 border border-red-900">{{ $item->role }}</td>
                             <td class="p-2 border border-red-900">
-                                <span class="px-2 py-1 rounded text-sm
+                                <span class="px-2 py-1 rounded text-sm text-white
                                                     @if($item->status == 'approve') bg-green-600
                                                     @else bg-yellow-600
                                                     @endif">

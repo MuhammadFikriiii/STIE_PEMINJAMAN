@@ -59,7 +59,7 @@
                             <td class="p-2 border border-red-900">{{ $item->kode_ruangan }}</td>
                             <td class="p-2 border border-red-900">{{ $item->nama_ruangan }}</td>
                             <td class="p-2 border border-red-900">
-                                <span class="px-2 py-1 rounded text-sm
+                                <span class="px-2 py-1 rounded text-sm text-white
                                                         @if($item->status_ruangan == 'available') bg-green-600
                                                         @elseif($item->status_ruangan == 'used') bg-yellow-600
                                                         @else bg-red-600

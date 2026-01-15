@@ -38,7 +38,7 @@
                         <td class="p-3 border border-red-900">{{ $item->tgl_pinjam }}</td>
                         <td class="p-3 border border-red-900">{{ $item->waktu_mulai }} - {{ $item->waktu_selesai }}</td>
                         <td class="p-3 border border-red-900">
-                            <span class="px-2 py-1 rounded text-sm bg-yellow-600">
+                            <span class="px-2 py-1 rounded text-sm bg-yellow-600 text-white">
                                 {{ $item->status }}
                             </span>
                         </td>
