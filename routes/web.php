@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\BorrowRoomControllers as BorrowRoom;
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::get('/pengajuan/{id}/surat', [BorrowRoom::class, 'surat'])->name('pengajuan.surat');
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/ruangan', [RuanganControllers::class, 'index'])->name('admin.ruangan.index');
@@ -32,6 +33,12 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [DashboardControllers::class, 'index'])->name('dashboard');
 
     Route::get('/daftar-permohonan-peminjaman', [BorrowRoom::class, 'index'])->name('admin.pengajuan.index');
+    Route::patch('/pengajuan/{id}/approve', [BorrowRoom::class, 'approve'])->name('pengajuan.approve');
+    Route::patch('/pengajuan/{id}/reject', [BorrowRoom::class, 'reject'])->name('pengajuan.reject');
+    Route::patch('/pengajuan/{id}/complete', [BorrowRoom::class, 'complete'])->name('pengajuan.complete');
+
+    // Hapus Data
+    Route::delete('/pengajuan/{id}/delete', [BorrowRoom::class, 'destroy'])->name('pengajuan.destroy');
 });
 
 Route::prefix('peminjam')->middleware(['auth', 'peminjam'])->group(function () {

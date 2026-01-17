@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BorrowRoom;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BorrowRoomControllers extends Controller
 {
@@ -16,6 +17,52 @@ class BorrowRoomControllers extends Controller
         $borrowRoom = BorrowRoom::with(['user', 'room'])->get();
 
         return view('admin.pengajuan.index', compact('borrowRoom'));
+    }
+
+    public function approve($id)
+    {
+        $item = BorrowRoom::findOrFail($id);
+        $item->status = 'diterima';
+        $item->save();
+
+        $room = $item->room;
+        $room->status_ruangan = 'used';
+        $room->save();
+
+        return back()->with('disetujui', 'berhasil');
+    }
+
+    public function reject($id)
+    {
+        $item = BorrowRoom::findOrFail($id);
+        $item->status = 'ditolak';
+        $item->save();
+
+        return back()->with('tambah', 'Peminjaman Ditolak.');
+    }
+
+    public function complete($id)
+    {
+        $item = BorrowRoom::findOrFail($id);
+        $item->status = 'diterima';
+        $item->save();
+
+        $room = $item->room;
+        $room->status_ruangan = 'available';
+        $room->save();
+
+        return back()->with('tambah', 'Peminjaman Selesai. Ruangan kembali Tersedia.');
+    }
+
+    public function surat($id)
+    {
+        $pengajuan = BorrowRoom::with(['user', 'room'])->findOrFail($id);
+
+        $pdf = Pdf::loadView('surat.peminjaman-ruangan', [
+            'data' => $pengajuan
+        ])->setPaper('A4');
+
+        return $pdf->stream('surat-peminjaman-ruangan.pdf');
     }
 
     /**
@@ -61,8 +108,11 @@ class BorrowRoomControllers extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $item = BorrowRoom::findOrFail($id);
+        $item->delete();
+
+        return back()->with('tambah', 'data peminjaman berhasil dihapus.');
     }
 }

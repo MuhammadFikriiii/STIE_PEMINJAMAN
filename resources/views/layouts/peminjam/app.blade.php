@@ -185,11 +185,11 @@
                                     x-transition:enter-end="transform opacity-100 scale-100"
                                     x-transition:leave="transition ease-in duration-75"
                                     x-transition:leave-end="transform opacity-0 scale-95"
-                                    class="absolute right-0 mt-2 w-48 bg-[#ac1234] rounded-md shadow-lg py-1 z-50 border border-gray-700">
+                                    class="absolute right-0 mt-2 w-48 bg-[#ac1234] rounded-md shadow-lg py-1 z-50 border border-red-700">
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <button type="submit"
-                                            class="block w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 hover:text-white">
+                                            class="block w-full text-left px-4 py-2 text-sm text-white hover:bg-red-700 hover:text-white">
                                             <i class="fas fa-sign-out-alt mr-2"></i> Log Out
                                         </button>
                                     </form>

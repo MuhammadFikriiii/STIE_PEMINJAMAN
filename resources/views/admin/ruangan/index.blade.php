@@ -11,7 +11,7 @@
             </a>
         </div>
         @if (session('tambah'))
-            <div id="alert" class="bg-green-500 text-white px-4 py-2 rounded-md mb-4 text-center relative">
+            <div id="alert" class="bg-green-500 text-white px-4 py-2 rounded-md mb-3 text-center relative">
                 <span class="font-bold">{{ session('tambah') }}</span>
                 <button onclick="document.getElementById('alert').style.display='none'"
                     class="absolute top-1 right-3 text-white font-bold text-lg">
