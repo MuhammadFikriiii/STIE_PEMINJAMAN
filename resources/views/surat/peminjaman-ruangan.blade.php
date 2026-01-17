@@ -92,6 +92,8 @@
             font-size: 10pt;
         }
     </style>
+
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-layout">
@@ -113,7 +115,7 @@
                 {{ str_pad($data->id, 3, '0', STR_PAD_LEFT) }}/PR/{{ $data->created_at->format('d') }}/{{ $bulanRomawi }}/{{ $data->created_at->format('Y') }}
             </td>
             <td width="40%" class="text-right">
-                Banjarmasin, {{ $data->created_at->translatedFormat('d F Y') }}
+                Banjarbaru, {{ $data->created_at->translatedFormat('d F Y') }}
             </td>
         </tr>
         <tr>
@@ -154,7 +156,7 @@
             <tr>
                 <td width="30%">Nama Peminjam</td>
                 <td width="5%">:</td>
-                <td width="65%" class="font-bold">{{ $data->user->name }}</td>
+                <td width="65%" class="font-bold">{{ strtoupper($data->user->name) }}</td>
             </tr>
             <tr>
                 <td>No. HP</td>
@@ -196,9 +198,9 @@
         Ketua STIE Pancasetia,<br>
 
         @if($data->status === 'diterima')
-            <img src="{{ public_path('img/ttd-ketua.png') }}" width="150" style="margin: 10px 0;">
+            <img src="{{ public_path('image/ttd.png') }}" width="200" style="margin: 5px 0;">
         @else
-            <br><br><br><br>
+            <br><br><br>
         @endif
 
         <br>
@@ -212,4 +214,5 @@
     </div>
 
 </body>
+
 </html>
