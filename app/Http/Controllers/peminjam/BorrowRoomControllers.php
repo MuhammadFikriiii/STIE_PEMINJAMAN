@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ruangan;
 use App\Models\BorrowRoom;
+use Illuminate\Support\Facades\Auth;
 
 class BorrowRoomControllers extends Controller
 {
@@ -14,7 +15,7 @@ class BorrowRoomControllers extends Controller
      */
     public function index()
     {
-        $borrowRoom = BorrowRoom::with(['user', 'room'])->get();
+        $borrowRoom = BorrowRoom::with(['user', 'room'])->where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
 
         return view('peminjam.peminjaman.index', compact('borrowRoom'));
     }

@@ -125,7 +125,7 @@
         <tr>
             <td>Perihal</td>
             <td>:</td>
-            <td class="font-bold">Permohonan Izin Peminjaman Ruangan</td>
+            <td class="font-bold">Permohonan Peminjaman Ruangan</td>
             <td></td>
         </tr>
     </table>
@@ -181,10 +181,6 @@
 
     <br>
 
-    <div class="text-justify">
-        Bermaksud meminjam fasilitas kampus untuk kegiatan tersebut.
-    </div>
-
     <div class="text-justify mt-2">
         Dengan ini permohonan peminjaman ruangan tersebut
         <b>{{ $data->status === 'diterima' ? 'TELAH DISETUJUI' : 'SEDANG DALAM PROSES' }}</b>
@@ -216,5 +212,4 @@
     </div>
 
 </body>
-
 </html>
